@@ -2,28 +2,21 @@
 using namespace std;
 
 void heapify(int arr[], int n) {
-    // Your code here
-    int i = n / 2 - 1; // Initialize with largest internal node
-    // Build the heap
-    while(i >= 0) {
-        int smallest = i;
-        int lChild = i * 2 + 1;
-        int rChild = i * 2 + 2;
+    for(int i = 1; i < n; i++) {
+        int j = i;
+        while(j > 0) {
+            int parent = (j - 1) / 2;
 
-        // Find the smallest
-        if(lChild < n && arr[lChild] < arr[smallest])
-            smallest = lChild;
-        if(rChild < n && arr[rChild] < arr[smallest])
-            smallest = rChild;
+            // No need to swap if parent < child
+            if(arr[j] >= arr[parent]) {
+                break;
+            }
 
-        // Swap smallest with parent
-        if(smallest != i) {
-            int temp = arr[i];
-            arr[i] = arr[smallest];
-            arr[smallest] = temp;
-            i = smallest;
-        } else {
-            i--;
+            // Swap parent and smallest
+            int temp = arr[j];
+            arr[j] = arr[parent];
+            arr[parent] = temp;
+            j = parent;
         }
     }
 }
@@ -48,6 +41,7 @@ void heapSort(int arr[], int n) {
             int lChild = i * 2 + 1;
             int rChild = i * 2 + 2;
 
+            // Find smallest
             if(lChild < n && arr[lChild] < arr[smallest]) {
                 smallest = lChild;
             }
@@ -55,6 +49,7 @@ void heapSort(int arr[], int n) {
                 smallest = rChild;
             }
 
+            // Swap parent and smallest
             if(smallest != i) {
                 int temp = arr[i];
                 arr[i] = arr[smallest];
