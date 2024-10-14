@@ -1,0 +1,3 @@
+/Users/elijahinamarga/CLionProjects/heaps/cmake-build-debug/CMakeFiles/heaps.dir
+/Users/elijahinamarga/CLionProjects/heaps/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/elijahinamarga/CLionProjects/heaps/cmake-build-debug/CMakeFiles/rebuild_cache.dir
