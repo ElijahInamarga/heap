@@ -26,10 +26,7 @@ void heapSort(int arr[], int n) {
     while(n > 0) {
         // Step 2: Extract elements from the heap one by one
         temp[originalSize - n] = arr[0];
-
-        int temp = arr[0];
-        arr[0] = arr[n - 1];
-        arr[n - 1] = temp;
+        swap(arr[0], arr[n - 1]);
         n--;
 
         // Step 3: Down Heapify
@@ -48,9 +45,7 @@ void heapSort(int arr[], int n) {
                 smallest = rChild;
 
             if(smallest != current) {
-                int temp = arr[current];
-                arr[current] = arr[smallest];
-                arr[smallest] = temp;
+                swap(arr[current], arr[smallest]);
                 current = smallest;
             }
         } while(current != original);
