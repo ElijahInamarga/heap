@@ -4,20 +4,14 @@ using namespace std;
 void heapify(int arr[], int n) {
     // Your code here
     // Build the heap
-    for(int i = 1; i < n; i++) {
+    for(int i = 0; i < n; i++) {
         int current = i;
-        int original;
-        do {
-            original = current;
-            int parent = (current - 1) / 2;
-
-            if(parent >= 0 && arr[current] < arr[parent]) {
-                int temp = arr[current];
-                arr[current] = arr[parent];
-                arr[parent] = temp;
-                current = parent;
-            }
-        } while(current != original);
+        int parent = (current - 1) / 2;
+        while(current != 0 && arr[current] < arr[parent]) {
+            swap(arr[current], arr[parent]);
+            current = parent;
+            parent = (current - 1) / 2;
+        }
     }
 }
 
@@ -39,7 +33,6 @@ void heapSort(int arr[], int n) {
         n--;
 
         // Step 3: Down Heapify
-
         int current = 0;
         int original;
         do {
