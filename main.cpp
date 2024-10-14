@@ -79,7 +79,7 @@ void printArray(int arr[], int n) {
 
 int main() {
     // Test array
-    int arr[] = {12, 11, 13, 5, 6, 7, 22, 33, 44, 55, 66, 21, 1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 54, 53, 56, 43, 42};
+    int arr[] = {12, 11, 13, 5, 6, 7};
     int n = sizeof(arr) / sizeof(arr[0]);
 
     cout << "Original array:\n";
