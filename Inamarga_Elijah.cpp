@@ -1,28 +1,23 @@
 #include <iostream>
 using namespace std;
 
-
 void heapify(int arr[], int n) {
     // Your code here
     // Build the heap
-
-    // Start at second element because root does not have a parent
     for(int i = 1; i < n; i++) {
-        int currentIndex = i;
-        while(true) {
-            int parentIndex = (currentIndex - 1) / 2;
-            int parent = arr[parentIndex];
-            int child = arr[currentIndex];
+        int current = i;
+        int original;
+        do {
+            original = current;
+            int parent = (current - 1) / 2;
 
-            // No need to swap if parent < child
-            if(parent > child)  {
-                arr[parentIndex] = child;
-                arr[currentIndex] = parent;
-                currentIndex = parentIndex;
-            } else {
-                break;
+            if(parent >= 0 && arr[current] < arr[parent]) {
+                int temp = arr[current];
+                arr[current] = arr[parent];
+                arr[parent] = temp;
+                current = parent;
             }
-        }
+        } while(current != original);
     }
 }
 
@@ -31,40 +26,41 @@ void heapSort(int arr[], int n) {
     // Step 1: Build a min-heap
     heapify(arr, n);
 
-    int temp[n];
-    int originalSize = n;
+    const int originalSize = n;
+    int temp[originalSize];
+
     while(n > 0) {
         // Step 2: Extract elements from the heap one by one
-        temp[originalSize - n] = arr[0]; // Populate temp[] 1 by 1 with heap's new roots
+        temp[originalSize - n] = arr[0];
 
-        int tempSwapVar = arr[0];
+        int temp = arr[0];
         arr[0] = arr[n - 1];
-        arr[n - 1] = tempSwapVar;
+        arr[n - 1] = temp;
         n--;
 
         // Step 3: Down Heapify
-        int currentIndex = 0;
-        while(true) {
-            int indexOfSmallest = currentIndex;
-            int lChildIndex = currentIndex * 2 + 1;
-            int rChildIndex = currentIndex * 2 + 2;
+
+        int current = 0;
+        int original;
+        do {
+            original = current;
+            int smallest = original;
+            int lChild = current * 2 + 1;
+            int rChild = current * 2 + 2;
 
             // Find the smallest
-            if(lChildIndex < n && arr[lChildIndex] < arr[indexOfSmallest])
-                indexOfSmallest = lChildIndex;
-            if(rChildIndex < n && arr[rChildIndex] < arr[indexOfSmallest])
-                indexOfSmallest = rChildIndex;
+            if(lChild < n && arr[lChild] < arr[smallest])
+                smallest = lChild;
+            if(rChild < n && arr[rChild] < arr[smallest])
+                smallest = rChild;
 
-            // Swap the parent with smallest
-            if(indexOfSmallest != currentIndex) {
-                int tempSwapVar2 = arr[currentIndex];
-                arr[currentIndex] = arr[indexOfSmallest];
-                arr[indexOfSmallest] = tempSwapVar2;
-                currentIndex = indexOfSmallest; // Keep checking if swapped element's new children > swapped element
-            } else {
-                break; // Stop checking if no swap was needed
+            if(smallest != current) {
+                int temp = arr[current];
+                arr[current] = arr[smallest];
+                arr[smallest] = temp;
+                current = smallest;
             }
-        }
+        } while(current != original);
     }
 
     // Copy temp back to array
