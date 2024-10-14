@@ -3,4 +3,4 @@ project(Heaps)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Heaps main.cpp)
+add_executable(Heaps Inamarga_Elijah.cpp)
